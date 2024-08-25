@@ -30,10 +30,14 @@ cd Restaurant_Management_System_RMS
 Create a `.env` file in the root directory of the project to store your environment variables. Example content for `.env`:
 
 ```env
+SECRET_KEY=vu%=e(+dv31h2f^hkcsal#d%(_hkrig)vh*q1l^4ow05)ek+ag
 DEBUG=True
-SECRET_KEY=your_secret_key_here
-DATABASE_URL=your_database_url_here
-STRIPE_SECRET_KEY=your_stripe_secret_key_here
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=DB_NAME
+DB_USER=DB_USER
+DB_PASSWORD=DB_PASSWORD
+DB_HOST=HOST_IP
+DB_PORT=DB_PORT
 ```
 Ensure you replace the placeholders with your actual configuration values.
 
