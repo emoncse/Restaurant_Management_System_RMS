@@ -1,6 +1,6 @@
 # Restaurant Management System API
 
-### This project is a Django-based RESTful API for managing restaurants, menus, employees, orders, and user authentication. It provides various endpoints for owners and employees to perform operations related to restaurant management and order processing.
+* This project is a Django-based RESTful API for managing restaurants, menus, employees, orders, and user authentication. It provides various endpoints for owners and employees to perform operations related to restaurant management and order processing.
 
 ## Table of Contents
 - [Getting Started](#getting-started)
