@@ -1,20 +1,22 @@
 # Restaurant Management System API
+
 ### This project is a Django-based RESTful API for managing restaurants, menus, employees, orders, and user authentication. It provides various endpoints for owners and employees to perform operations related to restaurant management and order processing.
 
 ## Table of Contents
-### Getting Started
-### Environment Setup
-### Running the Application
-### Docker Setup
-### API Endpoints
-### Authentication
-### Password Management
-### Employee Management
-### Order Management
-### Menu Management
-### Menu Item Management
-### Restaurant Management
-### Owner/User Management
+- [Getting Started](#getting-started)
+- [Environment Setup](#environment-setup)
+- [Running the Application](#running-the-application)
+- [Docker Setup](#docker-setup)
+- [API Endpoints](#api-endpoints)
+  - [Authentication](#authentication)
+  - [Password Management](#password-management)
+  - [Employee Management](#employee-management)
+  - [Order Management](#order-management)
+  - [Menu Management](#menu-management)
+  - [Menu Item Management](#menu-item-management)
+  - [Restaurant Management](#restaurant-management)
+  - [Owner/User Management](#owneruser-management)
+
 
 #### Getting Started
 * To get started with the project, clone the repository using the following command:
