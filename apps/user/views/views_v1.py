@@ -119,14 +119,14 @@ class UserViewSet(
             )
 
         if self.model_class.objects.filter(
-            ~Q(id=instance.id), email=request.data["email"]
+                ~Q(id=instance.id), email=request.data["email"]
         ).first():
             return Response(
                 {"message": "This email is taken by another user."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         if self.model_class.objects.filter(
-            ~Q(id=instance.id), username=request.data["username"]
+                ~Q(id=instance.id), username=request.data["username"]
         ).first():
             return Response(
                 {"message": "Username is already in use."},
@@ -157,16 +157,16 @@ class UserViewSet(
 
     # @has_permission("view_user")
     def list(self, request, *args, **kwargs):
-        # queryset = self.get_queryset()
-        # page = self.paginate_queryset(queryset)
-        # serializer_class = self.get_serializer_class()
-        # if page is not None:
-        #     serializer = serializer_class(page, many=True, context={"request": request})
-        #     return self.get_paginated_response(serializer.data)
+        queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        serializer_class = self.get_serializer_class()
+        if page is not None:
+            serializer = serializer_class(page, many=True, context={"request": request})
+            return self.get_paginated_response(serializer.data)
 
-        # serializer = serializer_class(queryset, many=True, context={"request": request})
-        # return Response(serializer.data)
-        return Response({"message": "Api depricated"}, status=status.HTTP_403_FORBIDDEN)
+        serializer = serializer_class(queryset, many=True, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # return Response({"message": "Api depricated"}, status=status.HTTP_403_FORBIDDEN)
 
     # @has_permission("retrieve_user")
     def retrieve(self, request, *args, **kwargs):
