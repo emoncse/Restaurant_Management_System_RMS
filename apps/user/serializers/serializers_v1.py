@@ -41,9 +41,14 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField(read_only=True, required=False)
+
+    def get_full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}"
+
     class Meta:
         model = User
-        fields = ['id', 'get_full_name', 'email', 'username', 'profile_pic']
+        fields = ['id', 'full_name', 'email', 'username', 'profile_pic', 'role']
 
 
 class UserRetrieveSerializer(serializers.ModelSerializer):
