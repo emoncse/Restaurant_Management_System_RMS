@@ -6,9 +6,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: >
-      gunicorn config.wsgi:application
-      -c gunicorn.conf.py
     restart: unless-stopped
     volumes:
       - './media:/code/media:rw'
@@ -16,4 +13,4 @@ services:
       - '/srv/www/restaurant-management/static:/srv/www/restaurant-management/static:rwx'
       - '/srv/www/restaurant-management/media:/srv/www/restaurant-management/media:rwx'
     ports:
-      - "8000:8000"
+      - "9123:9123"

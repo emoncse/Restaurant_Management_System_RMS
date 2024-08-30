@@ -45,7 +45,8 @@ SECRET_KEY = f"'{config('SECRET_KEY')}'"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "192.168.1.*", "localhost", "*"]
+ALLOWED_HOSTS = ["rms.techsistltd.com"]
+CSRF_TRUSTED_ORIGINS = ["https://rms.techsistltd.com"]
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition

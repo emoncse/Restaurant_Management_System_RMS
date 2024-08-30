@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
-
+from drf_spectacular.utils import extend_schema_serializer, OpenApiExample
 from external.pagination import CustomPagination
 from apps.user.models import User
 from apps.user.serializers.serializers_v1 import (
@@ -58,6 +58,25 @@ class UserViewSet(
         else:
             return UserCreateSerializer
 
+    @extend_schema(
+        examples=[
+            OpenApiExample(
+                "Create Todo",
+                value={
+                    "first_name": "string",
+                    "last_name": "string",
+                    "email": "user@example.com",
+                    "username": "string",
+                    "password": "string@123",
+                    "profile_pic": "file",
+                    "phone_number": "string",
+                    "birth_date": "YYYY-MM-DD",
+                    "role": "owner/user (choose one)",
+                },
+                request_only=True,
+            )
+        ],
+    )
     # @has_permission("create_user")
     def post(self, request, *args, **kwargs):
         if request.data["role"] == "employee":
@@ -90,7 +109,9 @@ class UserViewSet(
                 )
 
         if "profile_pic" in request.data.keys():
-            if request.data["profile_pic"] in ["", None, "null"]:
+            if request.data["profile_pic"] in ["", None, "null"] or isinstance(
+                request.data["profile_pic"], type("")
+            ):
                 request.data.pop("profile_pic")
 
         serializer_class = self.get_serializer_class()
@@ -119,14 +140,14 @@ class UserViewSet(
             )
 
         if self.model_class.objects.filter(
-                ~Q(id=instance.id), email=request.data["email"]
+            ~Q(id=instance.id), email=request.data["email"]
         ).first():
             return Response(
                 {"message": "This email is taken by another user."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         if self.model_class.objects.filter(
-                ~Q(id=instance.id), username=request.data["username"]
+            ~Q(id=instance.id), username=request.data["username"]
         ).first():
             return Response(
                 {"message": "Username is already in use."},
@@ -138,9 +159,10 @@ class UserViewSet(
                 {"message": "Invalid request. Password change restricted."},
                 status=status.HTTP_405_METHOD_NOT_ALLOWED,
             )
-
         if "profile_pic" in request.data.keys():
-            if request.data["profile_pic"] in ["", None, "null"]:
+            if request.data["profile_pic"] in ["", None, "null"] or isinstance(
+                request.data["profile_pic"], type("")
+            ):
                 request.data.pop("profile_pic")
 
         serializer_class = self.get_serializer_class()
