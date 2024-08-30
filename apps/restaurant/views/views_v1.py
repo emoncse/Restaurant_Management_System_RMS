@@ -53,7 +53,7 @@ class RestaurantViewSet(ModelViewSet):
         instance = self.get_object()
         if str(request.user.id) != request.data["owner"]:
             return Response(
-                {"message": "Ownership changing is not currenty available"},
+                {"message": "Ownership changing is not currently available"},
                 status=status.HTTP_403_FORBIDDEN,
             )
         serializer_class = self.get_serializer_class()
