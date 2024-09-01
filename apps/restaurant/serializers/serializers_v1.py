@@ -10,7 +10,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    user_details = UserListSerializer(read_only=True, required=False)
+    user = UserListSerializer(read_only=True, required=False)
 
     class Meta:
         model = Employee
