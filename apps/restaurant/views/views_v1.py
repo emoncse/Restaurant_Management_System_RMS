@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from ..serializers.serializers_v1 import (
     RestaurantSerializer,
     EmployeeSerializer,
+    EmployeeListSerializer,
     MenuSerializer,
     MenuItemSerializer,
 )
@@ -269,7 +270,7 @@ class EmployeeViewSet(ModelViewSet):
         if request.user.role != "owner":
             queryset = []
         page = self.paginate_queryset(queryset)
-        serializer_class = EmployeeSerializer
+        serializer_class = EmployeeListSerializer
         if page is not None:
             serializer = serializer_class(page, many=True, context={"request": request})
             return self.get_paginated_response(serializer.data)
@@ -280,7 +281,7 @@ class EmployeeViewSet(ModelViewSet):
     @has_permission("retrieve_employee")
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer_class = EmployeeSerializer
+        serializer_class = EmployeeListSerializer
         serializer = serializer_class(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
