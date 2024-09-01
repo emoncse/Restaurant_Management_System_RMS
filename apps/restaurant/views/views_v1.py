@@ -422,7 +422,7 @@ class MenuItemViewSet(ModelViewSet):
                 {"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
             )
 
-    @has_permission("delete_menuitem")
+    @has_permission("delete_menu_item")
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
