@@ -269,7 +269,7 @@ class EmployeeViewSet(ModelViewSet):
         if request.user.role != "owner":
             queryset = []
         page = self.paginate_queryset(queryset)
-        serializer_class = self.get_serializer_class()
+        serializer_class = EmployeeSerializer
         if page is not None:
             serializer = serializer_class(page, many=True, context={"request": request})
             return self.get_paginated_response(serializer.data)
@@ -280,7 +280,7 @@ class EmployeeViewSet(ModelViewSet):
     @has_permission("retrieve_employee")
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer_class = self.get_serializer_class()
+        serializer_class = EmployeeSerializer
         serializer = serializer_class(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
