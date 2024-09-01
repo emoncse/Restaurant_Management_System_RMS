@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from ..models import Restaurant, Employee, Menu, MenuItem
-
+from apps.user.serializers.serializers_v1 import UserListSerializer
 
 class RestaurantSerializer(serializers.ModelSerializer):
 
@@ -11,7 +11,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 class EmployeeSerializer(serializers.ModelSerializer):
     user_details = UserListSerializer
-    
+
     class Meta:
         model = Employee
         exclude = ["created_at", "updated_at"]
