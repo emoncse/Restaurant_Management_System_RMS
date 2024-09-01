@@ -10,6 +10,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    user_details = UserListSerializer
+    
     class Meta:
         model = Employee
         exclude = ["created_at", "updated_at"]
