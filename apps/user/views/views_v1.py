@@ -192,7 +192,7 @@ class UserViewSet(
 
     # @has_permission("retrieve_user")
     def retrieve(self, request, *args, **kwargs):
-        obj = self.model_class.objects.filter(id=kwargs["uuid"]).first()
+        obj = self.model_class.objects.filter(id=kwargs["id"]).first()
         if not obj:
             return Response(
                 {"message": "No user found."}, status=status.HTTP_404_NOT_FOUND
